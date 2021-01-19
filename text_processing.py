@@ -6,7 +6,19 @@
 NLP에서 흔히하는 전처리는 소문자 변환, 앞뒤 필요없는 띄어쓰기를 제거하는 등의 텍스트 정규화 (text normalization)입니다. 
 이번 숙제에서는 텍스트 처리 방법을 파이썬으로 배워보겠습니다. 
 """
-
+def is_vowel(input_character):
+    ord_val = ord(input_character)
+    if ord_val==65 or ord_val==97:
+        return True
+    if ord_val==69 or ord_val==101:
+        return True
+    if ord_val==73 or ord_val==105:
+        return True
+    if ord_val==79 or ord_val==111:
+        return True
+    if ord_val==85 or ord_val==117:
+        return True
+    return False
 
 def normalize(input_string):
     """
@@ -33,7 +45,27 @@ def normalize(input_string):
              >>> tp.normalize(input_string2)
              'extra space'
     """
+    # 65~90 ASCII code of capital characters
     normalized_string = None
+    for i in input_string:
+        if i==' ' :
+            if normalized_string==None :
+                continue
+            elif normalized_string[-1]==' ' :
+                continue
+            normalized_string += i
+        else :
+            ascii_code = ord(i)
+            if 64<ascii_code and ascii_code<91 :
+                normalized_string += chr(ascii_code+32)
+            elif 96<ascii_code and ascii_code<123 :
+                normalized_string += i
+            else :
+                normalized_string += i
+    
+    if len(normalized_string)>0 :
+        if normalized_string[-1]==' ' :
+            normalized_string = normalized_string[0:-1]
     return normalized_string
 
 
@@ -59,4 +91,8 @@ def no_vowels(input_string):
             ''W lv Pythn!'
     """
     no_vowel_string = None
+    for i in range(len(input_string)) :
+        if is_vowel(i):
+            continue
+        no_vowel_string += i
     return no_vowel_string
