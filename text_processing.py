@@ -46,10 +46,10 @@ def normalize(input_string):
              'extra space'
     """
     # 65~90 ASCII code of capital characters
-    normalized_string = None
+    normalized_string = ''
     for i in input_string:
         if i==' ' :
-            if normalized_string==None :
+            if len(normalized_string)==0 :
                 continue
             elif normalized_string[-1]==' ' :
                 continue
@@ -90,8 +90,8 @@ def no_vowels(input_string):
             >>> tp.normalize(input_string2)
             ''W lv Pythn!'
     """
-    no_vowel_string = None
-    for i in range(len(input_string)) :
+    no_vowel_string = ''
+    for i in input_string :
         if is_vowel(i):
             continue
         no_vowel_string += i
